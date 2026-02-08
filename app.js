@@ -93,6 +93,7 @@ const flagGrid = document.getElementById('flagGrid');
 const countText = document.getElementById('countText');
 const pageTitle = document.getElementById('pageTitle');
 const langSwitcher = document.getElementById('langSwitcher');
+const clearBtn = document.getElementById('clearBtn');
 
 // 언어 전환
 function setLanguage(lang) {
@@ -227,10 +228,24 @@ function debounce(func, wait) {
     };
 }
 
+// clear 버튼 표시/숨김
+function updateClearBtn() {
+    clearBtn.classList.toggle('visible', searchInput.value.length > 0);
+}
+
 // 이벤트 리스너
 searchInput.addEventListener('input', debounce((e) => {
     searchCountries(e.target.value);
+    updateClearBtn();
 }, 300));
+
+// 검색 초기화 버튼
+clearBtn.addEventListener('click', () => {
+    searchInput.value = '';
+    searchCountries('');
+    updateClearBtn();
+    searchInput.focus();
+});
 
 // 언어 선택 버튼 이벤트
 langSwitcher.addEventListener('click', (e) => {
@@ -239,6 +254,23 @@ langSwitcher.addEventListener('click', (e) => {
         setLanguage(btn.dataset.lang);
     }
 });
+
+// 스크롤 시 header 축소 + i18n 페이드아웃 (hysteresis로 떨림 방지)
+const header = document.querySelector('header');
+const COMPACT_ON = 80;
+const COMPACT_OFF = 10;
+let isCompact = false;
+
+window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    if (!isCompact && scrollY > COMPACT_ON) {
+        isCompact = true;
+        header.classList.add('compact');
+    } else if (isCompact && scrollY < COMPACT_OFF) {
+        isCompact = false;
+        header.classList.remove('compact');
+    }
+}, { passive: true });
 
 // 초기화
 setLanguage(currentLang);

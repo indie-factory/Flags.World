@@ -9,7 +9,6 @@
 <body>
     <div class="container">
         <header>
-            <h1 id="pageTitle">🌍 세계 국기 검색</h1>
             <div class="lang-switcher" id="langSwitcher">
                 <button class="lang-btn" data-lang="ko">🇰🇷</button>
                 <button class="lang-btn" data-lang="en">🇺🇸</button>
@@ -18,13 +17,15 @@
                 <button class="lang-btn" data-lang="es">🇪🇸</button>
                 <button class="lang-btn" data-lang="fr">🇫🇷</button>
             </div>
+            <h1 id="pageTitle">🌍 세계 국기 검색</h1>
             <div class="search-box">
-                <input 
-                    type="text" 
-                    id="searchInput" 
+                <input
+                    type="text"
+                    id="searchInput"
                     placeholder="국가명 또는 수도명으로 검색..."
                     autocomplete="off"
                 >
+                <button class="clear-btn" id="clearBtn" type="button">&times;</button>
                 <span class="search-icon">🔍</span>
             </div>
             <div class="result-count">

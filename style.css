@@ -22,6 +22,15 @@ header {
     border-radius: 20px;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
     margin-bottom: 30px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    transition: padding 0.3s ease, border-radius 0.3s ease;
+}
+
+header.compact {
+    padding: 12px 30px;
+    border-radius: 0 0 16px 16px;
 }
 
 h1 {
@@ -29,12 +38,40 @@ h1 {
     color: #333;
     margin-bottom: 25px;
     font-size: 2rem;
+    transition: opacity 0.3s ease, max-height 0.3s ease, margin-bottom 0.3s ease;
+    max-height: 60px;
+    overflow: hidden;
+}
+
+header.compact h1 {
+    opacity: 0;
+    max-height: 0;
+    margin-bottom: 0;
 }
 
 .search-box {
     position: relative;
     max-width: 600px;
     margin: 0 auto 15px;
+    transition: margin 0.3s ease;
+}
+
+header.compact .search-box {
+    margin-bottom: 0;
+}
+
+.result-count {
+    text-align: center;
+    color: #666;
+    font-size: 14px;
+    transition: opacity 0.3s ease, max-height 0.3s ease;
+    max-height: 30px;
+    overflow: hidden;
+}
+
+header.compact .result-count {
+    opacity: 0;
+    max-height: 0;
 }
 
 #searchInput {
@@ -60,20 +97,52 @@ h1 {
     font-size: 20px;
 }
 
+.clear-btn {
+    position: absolute;
+    right: 50px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #999;
+    cursor: pointer;
+    padding: 0 4px;
+    line-height: 1;
+    display: none;
+    transition: color 0.2s;
+}
+
+.clear-btn.visible {
+    display: block;
+}
+
+.clear-btn:hover {
+    color: #333;
+}
+
 .lang-switcher {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    z-index: 10;
     display: flex;
-    justify-content: center;
-    gap: 8px;
-    margin-bottom: 20px;
+    gap: 4px;
+    transition: opacity 0.3s ease;
+}
+
+header.compact .lang-switcher {
+    opacity: 0;
+    pointer-events: none;
 }
 
 .lang-btn {
-    font-size: 24px;
+    font-size: 22px;
     background: none;
     border: 2px solid transparent;
     border-radius: 8px;
     cursor: pointer;
-    padding: 4px 8px;
+    padding: 2px 6px;
     transition: all 0.2s;
     line-height: 1;
 }
@@ -86,12 +155,6 @@ h1 {
 .lang-btn.active {
     border-color: #667eea;
     background: rgba(102, 126, 234, 0.15);
-}
-
-.result-count {
-    text-align: center;
-    color: #666;
-    font-size: 14px;
 }
 
 .flag-grid {
@@ -186,6 +249,17 @@ h1 {
 
     h1 {
         font-size: 1.5rem;
+    }
+
+    .lang-switcher {
+        top: 8px;
+        right: 10px;
+        gap: 2px;
+    }
+
+    .lang-btn {
+        font-size: 16px;
+        padding: 2px 3px;
     }
 
     .flag-grid {
