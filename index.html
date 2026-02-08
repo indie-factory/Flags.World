@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>세계 국기 검색</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 id="pageTitle">🌍 세계 국기 검색</h1>
+            <div class="lang-switcher" id="langSwitcher">
+                <button class="lang-btn" data-lang="ko">🇰🇷</button>
+                <button class="lang-btn" data-lang="en">🇺🇸</button>
+                <button class="lang-btn" data-lang="ja">🇯🇵</button>
+                <button class="lang-btn" data-lang="zh">🇨🇳</button>
+                <button class="lang-btn" data-lang="es">🇪🇸</button>
+                <button class="lang-btn" data-lang="fr">🇫🇷</button>
+            </div>
+            <div class="search-box">
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    placeholder="국가명 또는 수도명으로 검색..."
+                    autocomplete="off"
+                >
+                <span class="search-icon">🔍</span>
+            </div>
+            <div class="result-count">
+                <span id="countText">전체 국가를 불러오는 중...</span>
+            </div>
+        </header>
+
+        <main>
+            <div id="flagGrid" class="flag-grid">
+                <div class="loading">로딩 중...</div>
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
